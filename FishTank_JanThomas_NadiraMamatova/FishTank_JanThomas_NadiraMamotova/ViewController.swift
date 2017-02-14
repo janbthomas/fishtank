@@ -11,10 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var numFish: UISlider!
-    var FishImages = [ #imageLiteral(resourceName: "fish1"), #imageLiteral(resourceName: "fish2"), #imageLiteral(resourceName: "fish3"), #imageLiteral(resourceName: "fish4"), #imageLiteral(resourceName: "fish5"), #imageLiteral(resourceName: "fish6"), #imageLiteral(resourceName: "fish7"), #imageLiteral(resourceName: "fish8"), #imageLiteral(resourceName: "fish9")]
+
 
     var fishList = [
-        FishObject(iImageView: nil, aDly: 3.0, aDur: 5.0, iImage: #imageLiteral(resourceName: "fish1")),
+        FishObject(iImageView: nil, aDly: 1.0, aDur: 5.0, iImage: #imageLiteral(resourceName: "fish1")),
         FishObject(iImageView: nil, aDly: 5.0, aDur: 8.0, iImage: #imageLiteral(resourceName: "fish2")),
         FishObject(iImageView: nil, aDly: 8.0, aDur: 10.0, iImage: #imageLiteral(resourceName: "fish3")),
         FishObject(iImageView: nil, aDly: 11.0, aDur: 9.0, iImage: #imageLiteral(resourceName: "fish4")),
@@ -47,11 +47,10 @@ class ViewController: UIViewController {
         
         let numberOfFish = Int(roundf(self.numFish!.value))
         let screenWidth = Int(UIScreen.main.bounds.width)
-        //let delayArr = [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ]
         
         
-        print( "numberOfFish \(numberOfFish) \(self.numFish)")
-        print( "screenSize: \(screenWidth)")
+        //print( "numberOfFish \(numberOfFish) \(self.numFish)")
+        //print( "screenSize: \(screenWidth)")
         
         // Start a loop to show and animate cars one by one
         for iFish in 0...numberOfFish-1 {
@@ -61,7 +60,7 @@ class ViewController: UIViewController {
             let hFish = (wFish * 3)/4
             let xStart = 0 - wFish
             let xEnd = screenWidth - wFish
-            let yPos = Int(arc4random() % 350)
+            let yPos = Int(arc4random() % 350) + 50
             
             // Define the duration and delay of the animation
             let aDur = self.fishList[iFish].aDur
@@ -72,14 +71,14 @@ class ViewController: UIViewController {
             
             self.fishList[iFish].iImageView = fish
             
-            fish.image = self.fishList[iFish].iImage /*FishImages[iFish] */
+            fish.image = self.fishList[iFish].iImage
             fish.frame = CGRect(x: xStart, y: yPos, width: wFish, height: hFish)
             self.view.addSubview(fish)
             
             let aFrame = CGRect(x: xEnd, y: yPos + 30, width: wFish, height: hFish)
             let bFrame = CGRect(x: 0, y: yPos, width: wFish, height: hFish)
             
-            print( "Fish: \(iFish) Duration \(aDur) Delay \(aDly) y \(yPos)")
+            //print( "Fish: \(iFish) Duration \(aDur) Delay \(aDly) y \(yPos)")
             animateRight( aDur: aDur, aDly: aDly, aFrame: aFrame, bFrame: bFrame, fish: fish)
             
 
